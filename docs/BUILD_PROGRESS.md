@@ -1,0 +1,47 @@
+# Sri Aurobindo School, Bhopal — Build Progress & Implementation Log
+
+## Phase Checklist
+
+- [x] **Phase 1: Institutional & Architecture Audit**
+  - Analyzed `sas.edu.in` and official society records.
+  - Formulated Four-House chromatic system and verified factual database.
+  - Purged all fake counters, template watermarks, and broken tickers.
+  - Produced `docs/SCHOOL_CONTENT_AUDIT.md`.
+- [x] **Phase 2: Design System & Motion Architecture**
+  - Defined Teresa (Blue), Amartya (Yellow), Tagore (Green), Raman (Red) color stops.
+  - Implemented dual-surface Obsidian / Pearl rhythm and glassmorphism.
+  - Produced `docs/DESIGN_SYSTEM.md`.
+- [x] **Phase 3: Core Application & Dependencies**
+  - Configured Next.js 14 App Router, TypeScript, Tailwind CSS, Framer Motion, Lucide icons.
+  - Configured legacy 301 redirects in `next.config.mjs`.
+  - Added EducationalOrganization Schema.org JSON-LD in `app/layout.tsx`.
+- [x] **Phase 4: Custom Interactive Primitives**
+  - `SpotlightCard`: 3D perspective tilt + cursor-following 1px gradient border.
+  - `AuroraBackground`: 4-House aurora mesh with cursor-tracking spotlight.
+  - `HouseSwitcher`: Interactive house aura switcher with compact pill and full championship grid modes.
+  - `AgeEligibilityCalculator`: Instant grade matching, cutoff validation, and celebratory confetti.
+  - `SavitriMonument`: Kinetic scroll-illuminated typography with golden particle glow and ambient shimmer.
+  - `AnimatedTimeline`: Vertical scroll-linked pedagogical timeline (`useScroll` + `useSpring`) with glowing beam.
+  - `MagneticButton`: Physics spring magnetic button.
+  - `SiteHeader`: Floating pill-shaped glass dock with active `layoutId` pill.
+  - `SiteFooter`: Four-House chromatic band, verified coordinates, and complete sitemap.
+- [x] **Phase 5: Public Pages Implementation**
+  - `/` (Homepage — Flagship conversion experience with Aurora Hero, 4-House switcher, Savitri monument, Bento Grid, Animated Timeline, Age Concierge)
+  - `/about` (Heritage, SAEC timeline, Chairman Umesh Trivedi address, 6 Aims)
+  - `/academics` (Four Wings, Animated Pedagogical Odyssey, Three-Term Exam rules, Science Labs & Central Library)
+  - `/admissions` (Concierge, 4-step roadmap, validated enquiry form, FAQs)
+  - `/school-life` (The Four Houses deep-dive, athletics, playgrounds, chess arena)
+  - `/gallery` (Filterable Lightbox gallery with keyboard navigation)
+  - `/notices` & `/notices/[id]` (Gazette & Circular reader)
+  - `/news` & `/news/[slug]` (Articles and campus highlights)
+  - `/events` (Three-term academic calendar)
+  - `/contact` (Verified coordinates, landmark map, validated message form)
+- [x] **Phase 6: API Layer & Forms**
+  - `/api/enquiries` (Validated admission enquiry persistence with instant reference ID generation)
+  - `/api/contact` (Validated institutional messaging endpoint)
+- [x] **Phase 7: Admin Portal**
+  - `/admin` (Secure staff console with passphrase protection, enquiry triage, and fact audit)
+- [x] **Phase 8: Production Build & QA Verification**
+  - `npm run build` completed with zero TypeScript and zero ESLint errors (23 static/dynamic routes generated).
+  - Dev server tested and verified in live browser session.
+  - API submission tested with instant response ID generation.
