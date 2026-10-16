@@ -50,37 +50,74 @@ export default function StudentDashboardPage() {
   const [selectedReceipt, setSelectedReceipt] = useState<any>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Load student on mount
+  // Load student on mount from session API or local storage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedId = localStorage.getItem("sas_active_student_id");
-      if (storedId) {
-        const found = DEMO_STUDENTS.find((s) => s.id === storedId);
-        if (found) {
-          setStudent(found);
-          setAssignments(found.assignments);
-          setBooks(found.libraryBooks);
+    async function loadSession() {
+      try {
+        const res = await fetch("/api/auth/session");
+        const data = await res.json();
+        if (data.authenticated && data.student) {
+          const s = data.student;
+          const houseColor =
+            s.house === "teresa"
+              ? "#0284C7"
+              : s.house === "amartya"
+              ? "#D97706"
+              : s.house === "tagore"
+              ? "#059669"
+              : "#E11D48";
+          const houseName = `${s.house.charAt(0).toUpperCase() + s.house.slice(1)} House`;
+
+          const profile: StudentProfile = {
+            id: s.scholarId,
+            name: s.name,
+            grade: s.classSection,
+            house: s.house,
+            houseName,
+            houseColor,
+            avatar: s.name.charAt(0).toUpperCase(),
+            bloodGroup: "B+",
+            dob: s.dob || "2010-04-15",
+            parentName: "Parent / Guardian",
+            emergencyPhone: "0755-2558286",
+            attendancePercent: s.attendance || 96.5,
+            overallScorePercent: s.overallScore || 94.2,
+            housePointsContributed: 145,
+            pendingProjectsCount: 2,
+            schedule: DEMO_STUDENTS[0].schedule,
+            reportCard: DEMO_STUDENTS[0].reportCard,
+            libraryBooks: DEMO_STUDENTS[0].libraryBooks,
+            assignments: DEMO_STUDENTS[0].assignments,
+            fees: DEMO_STUDENTS[0].fees,
+          };
+
+          setStudent(profile);
+          setAssignments(profile.assignments);
+          setBooks(profile.libraryBooks);
+          return;
+        }
+      } catch (e) {
+        console.error("Session check error", e);
+      }
+
+      if (typeof window !== "undefined") {
+        const storedId = localStorage.getItem("sas_active_student_id");
+        if (storedId) {
+          const found = DEMO_STUDENTS.find((s) => s.id === storedId);
+          if (found) {
+            setStudent(found);
+            setAssignments(found.assignments);
+            setBooks(found.libraryBooks);
+          }
         }
       }
     }
+    loadSession();
   }, []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const handleStudentSwitch = (newId: string) => {
-    const nextStudent = DEMO_STUDENTS.find((s) => s.id === newId);
-    if (nextStudent) {
-      setStudent(nextStudent);
-      setAssignments(nextStudent.assignments);
-      setBooks(nextStudent.libraryBooks);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("sas_active_student_id", newId);
-      }
-      showToast(`Switched profile to ${nextStudent.name} (${nextStudent.grade})`);
-    }
   };
 
   const toggleAssignmentStatus = (id: string) => {
@@ -108,9 +145,13 @@ export default function StudentDashboardPage() {
     );
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {}
     if (typeof window !== "undefined") {
       localStorage.removeItem("sas_active_student_id");
+      localStorage.removeItem("sas_student_profile");
     }
     router.push("/student/login");
   };
@@ -171,34 +212,19 @@ export default function StudentDashboardPage() {
               </div>
             </div>
 
-            {/* Right: Quick Demo Profile Switcher + Sign Out */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-slate-100 border border-slate-200/80 text-xs">
-                <span className="text-[11px] font-semibold text-slate-500 px-1.5 hidden sm:inline">
-                  Switch:
-                </span>
-                {DEMO_STUDENTS.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => handleStudentSwitch(s.id)}
-                    className={cn(
-                      "px-2 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer",
-                      student.id === s.id
-                        ? "bg-white text-slate-900 shadow-2xs font-bold"
-                        : "text-slate-600 hover:text-slate-900"
-                    )}
-                  >
-                    {s.name.split(" ")[0]}
-                  </button>
-                ))}
+            {/* Right: Verified Session Badge + Sign Out */}
+            <div className="flex items-center gap-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Active Scholar Session</span>
               </div>
 
               <button
                 onClick={handleSignOut}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-colors cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Sign Out</span>
+                <span>Sign Out</span>
               </button>
             </div>
           </div>

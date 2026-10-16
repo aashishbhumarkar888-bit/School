@@ -122,6 +122,7 @@ const INITIAL_LEADS: AdmissionLead[] = [
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [usernameOrEmail, setUsernameOrEmail] = useState("admin");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [activeTab, setActiveTab] = useState<
@@ -187,33 +188,53 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = sessionStorage.getItem("sas_admin_auth");
-      if (stored === "true") {
-        setIsAuthenticated(true);
+    async function verifyAdminSession() {
+      try {
+        const res = await fetch("/api/auth/session");
+        const data = await res.json();
+        if (data.authenticated && data.admin) {
+          setIsAuthenticated(true);
+          return;
+        }
+      } catch {}
+      if (typeof window !== "undefined") {
+        const stored = sessionStorage.getItem("sas_admin_auth");
+        if (stored === "true") {
+          setIsAuthenticated(true);
+        }
       }
     }
+    verifyAdminSession();
   }, []);
 
-  const handleLogin = (passcodeToTest?: string) => {
-    const code = (passcodeToTest || password).trim();
-    if (
-      code === "SAS-ADMIN-1989" ||
-      code === "aurobindo@1989" ||
-      code === "sasadmin"
-    ) {
+  const handleLogin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/auth/admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ emailOrUsername: usernameOrEmail, password }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.authenticated) {
+        setErrorMsg(data.error || "Authentication failed. Invalid passcode.");
+        return;
+      }
       setIsAuthenticated(true);
-      setErrorMsg("");
       if (typeof window !== "undefined") {
         sessionStorage.setItem("sas_admin_auth", "true");
       }
       showToast("Authenticated as SAEC Administrative Lead");
-    } else {
-      setErrorMsg("Incorrect authorization key. Demo key: SAS-ADMIN-1989");
+    } catch {
+      setErrorMsg("Network error connecting to administrative verification gateway.");
     }
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {}
     setIsAuthenticated(false);
     if (typeof window !== "undefined") {
       sessionStorage.removeItem("sas_admin_auth");
@@ -331,26 +352,41 @@ export default function AdminPage() {
             </p>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleLogin();
-            }}
-            className="space-y-4"
-          >
+          <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
-                Passcode / Authorization Key
+                Administrator ID or Official Email
+              </label>
+              <div className="relative">
+                <Users className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <input
+                  type="text"
+                  required
+                  value={usernameOrEmail}
+                  onChange={(e) => setUsernameOrEmail(e.target.value)}
+                  placeholder="admin or admin@sas.edu.in"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 bg-slate-50/50"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                Security Passcode
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                 <input
                   type="password"
+                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter key (SAS-ADMIN-1989)"
+                  placeholder="••••••••••••"
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 bg-slate-50/50"
                 />
+              </div>
+              <div className="flex items-center justify-between mt-1 text-[11px] text-slate-500">
+                <span>Default authorized staff key: SAS-ADMIN-1989</span>
               </div>
             </div>
 
@@ -362,24 +398,16 @@ export default function AdminPage() {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer flex items-center justify-center gap-2"
             >
-              Authenticate Access
+              <span>Authenticate Access</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
-          {/* 1-Click Instant Demo Unlock */}
-          <div className="pt-2 border-t border-slate-100">
-            <button
-              type="button"
-              onClick={() => handleLogin("SAS-ADMIN-1989")}
-              className="w-full py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs border border-blue-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>1-Click Instant Evaluator Demo Unlock</span>
-            </button>
-            <p className="text-[11px] text-slate-400 text-center mt-2">
-              Default passcode: <code className="font-mono text-slate-600">SAS-ADMIN-1989</code>
+          <div className="pt-3 border-t border-slate-100 text-center">
+            <p className="text-[11px] text-slate-400">
+              Restricted to authorized SAEC governing committee & administration personnel.
             </p>
           </div>
         </div>
