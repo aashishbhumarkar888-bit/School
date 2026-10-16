@@ -39,7 +39,12 @@ export function AdminShortcutModal() {
 
   const handleAuth = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passphrase === "aurobindo@1989" || passphrase === "sasadmin") {
+    const cleanPass = passphrase.trim();
+    if (
+      cleanPass === "SAS-ADMIN-1989" ||
+      cleanPass === "aurobindo@1989" ||
+      cleanPass === "sasadmin"
+    ) {
       setIsSuccess(true);
       setErrorMsg("");
       if (typeof window !== "undefined") {
@@ -53,7 +58,7 @@ export function AdminShortcutModal() {
       }, 700);
     } else {
       setIsShaking(true);
-      setErrorMsg("Incorrect authorization key. Try 'aurobindo@1989'");
+      setErrorMsg("Incorrect authorization key. Demo key: SAS-ADMIN-1989");
       setTimeout(() => setIsShaking(false), 500);
     }
   };

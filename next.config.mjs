@@ -58,6 +58,26 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/campus.html",
+        destination: "/school-life",
+        permanent: true,
+      },
+      {
+        source: "/affiliation.html",
+        destination: "/academics",
+        permanent: true,
+      },
+      {
+        source: "/curriculum.html",
+        destination: "/academics",
+        permanent: true,
+      },
+      {
+        source: "/methodology.html",
+        destination: "/academics",
+        permanent: true,
+      },
+      {
         source: "/contact.html",
         destination: "/contact",
         permanent: true,
@@ -66,6 +86,31 @@ const nextConfig = {
         source: "/gallery.html",
         destination: "/gallery",
         permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
       },
     ];
   },

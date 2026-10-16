@@ -81,14 +81,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" data-house="teresa" className={`${inter.variable} ${cinzel.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#FCFBF9] font-sans text-slate-900 selection:bg-sky-500/20 antialiased">
+      <body className="min-h-screen flex flex-col bg-white font-sans text-slate-900 selection:bg-blue-600/15 selection:text-blue-900 antialiased">
         <HouseProvider>
           <SiteHeader />
           <main className="flex-1 pt-20 md:pt-24">{children}</main>

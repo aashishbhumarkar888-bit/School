@@ -12,7 +12,11 @@ import {
   Download,
   ArrowRight,
   Filter,
+  Sparkles,
 } from "lucide-react";
+import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import { ScrollReveal, KineticText } from "@/components/ui/ScrollReveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { cn } from "@/lib/utils";
 
 const NOTICE_CATEGORIES = ["All", "Admission", "Examination", "Academic", "Administrative"] as const;
@@ -31,27 +35,40 @@ export default function NoticesPage() {
 
   return (
     <div className="bg-[#FCFBF9] text-slate-900 min-h-screen">
-      {/* ================= 1. HEADER BANNER ================= */}
-      <section className="relative py-20 bg-gradient-to-b from-rose-50/60 via-white to-[#FCFBF9] border-b border-slate-200/80 overflow-hidden">
+      {/* ================= 1. HEADER BANNER WITH LIVING AURORA ================= */}
+      <section className="relative pt-28 pb-20 overflow-hidden border-b border-slate-200/80">
+        <AuroraBackground className="absolute inset-0 z-0" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 shadow-xs inline-flex items-center gap-1.5 mb-4">
-              <Bell className="w-3.5 h-3.5 text-rose-600" />
-              <span>Official Institutional Gazette · Circulars</span>
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-slate-900 mt-2 tracking-tight leading-tight">
-              School Notices & Circulars
+            <ScrollReveal variant="fade-up">
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 shadow-2xs inline-flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                <Bell className="w-3.5 h-3.5 text-rose-600" />
+                <span>Official Institutional Gazette · Circulars</span>
+              </span>
+            </ScrollReveal>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-slate-900 tracking-tight leading-[1.12]">
+              <KineticText
+                text="School Notices & Circulars"
+                highlightWords={["Notices", "Circulars"]}
+                delay={0.1}
+              />
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed font-normal">
-              Official administrative notifications, examination schedules, admission updates, and
-              academic guidelines issued by the School Office and SAEC.
-            </p>
+
+            <ScrollReveal variant="fade-up" delay={0.2}>
+              <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed font-normal">
+                Official administrative notifications, examination schedules, admission updates, and
+                academic guidelines issued by the School Office and SAEC.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ================= 2. SEARCH & CATEGORY FILTER ================= */}
-      <section className="py-8 bg-white border-b border-slate-200/80 sticky top-16 sm:top-20 z-30 backdrop-blur-md bg-white/90">
+      <section className="py-8 bg-white/90 border-b border-slate-200/80 sticky top-16 sm:top-20 z-30 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Search Input */}
@@ -109,46 +126,51 @@ export default function NoticesPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredNotices.map((notice) => (
-                <div
-                  key={notice.id}
-                  className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
-                >
-                  <div className="space-y-2 max-w-3xl">
-                    <div className="flex items-center gap-3">
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200">
-                        {notice.category}
-                      </span>
-                      <span className="text-xs text-slate-500 font-mono flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {notice.date}
-                      </span>
-                      {notice.isImportant && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
-                          Urgent
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="text-lg sm:text-xl font-bold font-serif text-slate-900">
-                      {notice.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {notice.summary}
-                    </p>
-                  </div>
-
-                  <div className="shrink-0 flex items-center gap-3">
-                    <Link
-                      href={`/notices/${notice.id}`}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-200 transition-colors"
+              {filteredNotices.map((notice, idx) => {
+                const houses = ["teresa", "amartya", "tagore", "raman"];
+                return (
+                  <ScrollReveal key={notice.id} variant="fade-up" delay={idx * 0.06}>
+                    <SpotlightCard
+                      house={houses[idx % 4]}
+                      className="p-6 bg-white border border-slate-200/90 shadow-2xs hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6"
                     >
-                      <span>Read Full Notice</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                      <div className="space-y-2 max-w-3xl">
+                        <div className="flex items-center gap-3">
+                          <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200">
+                            {notice.category}
+                          </span>
+                          <span className="text-xs text-slate-500 font-mono flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {notice.date}
+                          </span>
+                          {notice.isImportant && (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 animate-pulse">
+                              Urgent
+                            </span>
+                          )}
+                        </div>
+
+                        <h3 className="text-lg sm:text-xl font-bold font-serif text-slate-900">
+                          {notice.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                          {notice.summary}
+                        </p>
+                      </div>
+
+                      <div className="shrink-0 flex items-center gap-3">
+                        <Link
+                          href={`/notices/${notice.id}`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors shadow-2xs"
+                        >
+                          <span>Read Full Notice</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    </SpotlightCard>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           )}
         </div>

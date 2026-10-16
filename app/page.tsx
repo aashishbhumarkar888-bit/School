@@ -22,6 +22,9 @@ import { SavitriMonument } from "@/components/ui/SavitriMonument";
 import { AgeEligibilityCalculator } from "@/components/ui/AgeEligibilityCalculator";
 import { AnimatedTimeline } from "@/components/ui/AnimatedTimeline";
 import { HouseSpiritQuiz } from "@/components/ui/HouseSpiritQuiz";
+import { EditorialImageFrame } from "@/components/ui/EditorialImageFrame";
+import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
   Sparkles,
   ArrowRight,
@@ -40,6 +43,7 @@ import {
   GraduationCap,
   Heart,
   Zap,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -50,12 +54,14 @@ export default function HomePage() {
   const currentHouseInfo = HOUSES[activeHouse];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900">
+    <div className="flex flex-col min-h-screen bg-white text-slate-900">
       {/* ================= 1. CINEMATIC LUMINOUS DAYLIGHT HERO SECTION ================= */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-6 pb-20">
-        <AuroraBackground className="absolute inset-0 z-0" />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-16 bg-white border-b border-slate-200/80">
+        {/* Subtle architectural dot grid matrix with soft radial mask */}
+        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left 7 Columns: Editorial Headline & Copy */}
             <div className="lg:col-span-7 text-left space-y-6">
@@ -64,14 +70,14 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 shadow-sm text-xs text-slate-700"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs text-slate-700"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-bold text-slate-900">Est. July 1989</span>
                 <span className="text-slate-300">•</span>
                 <span>Sri Aurobindo Education Centre (SAEC)</span>
                 <span className="text-slate-300">•</span>
-                <span className="text-sky-700 font-semibold">MPBSE K–12</span>
+                <span className="text-blue-700 font-semibold">MPBSE K–12</span>
               </motion.div>
 
               {/* Kinetic Luminous Headline */}
@@ -101,7 +107,7 @@ export default function HomePage() {
                 Welcome to <strong>Sri Aurobindo School, Bhopal</strong> — an integral co-educational K–12 sanctuary at Tulsi Nagar. Guided by Sri Aurobindo and The Mother, we cultivate razor-sharp intellect, spirited courage, and noble character.
               </motion.p>
 
-              {/* Dual Magnetic Action CTAs */}
+              {/* Dual Action CTAs */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,9 +127,9 @@ export default function HomePage() {
                 <Link href="/about">
                   <MagneticButton
                     variant="glass"
-                    className="px-6 py-3.5 text-sm sm:text-base font-semibold border-slate-200 text-slate-800 bg-white/80 hover:bg-white"
+                    className="px-6 py-3.5 text-sm sm:text-base font-semibold border-slate-200 text-slate-800 bg-white hover:bg-slate-50"
                   >
-                    <Compass className="w-4 h-4 text-sky-600" />
+                    <Compass className="w-4 h-4 text-blue-600" />
                     <span>Explore Heritage</span>
                   </MagneticButton>
                 </Link>
@@ -136,83 +142,98 @@ export default function HomePage() {
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="pt-6 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4"
               >
-                <div className="p-3 rounded-2xl bg-white/70 border border-slate-200/80 shadow-xs">
-                  <p className="text-xl font-bold font-serif text-sky-600">July 1989</p>
+                <div className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs">
+                  <p className="text-xl font-bold font-serif text-blue-700">July 1989</p>
                   <p className="text-[11px] text-slate-500 font-medium">Founded by SAEC</p>
                 </div>
-                <div className="p-3 rounded-2xl bg-white/70 border border-slate-200/80 shadow-xs">
+                <div className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs">
                   <p className="text-xl font-bold font-serif text-amber-600">K–12 Co-ed</p>
                   <p className="text-[11px] text-slate-500 font-medium">Nursery to XII</p>
                 </div>
-                <div className="p-3 rounded-2xl bg-white/70 border border-slate-200/80 shadow-xs">
+                <div className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs">
                   <p className="text-xl font-bold font-serif text-emerald-600">MPBSE</p>
                   <p className="text-[11px] text-slate-500 font-medium">Board Affiliated</p>
                 </div>
-                <div className="p-3 rounded-2xl bg-white/70 border border-slate-200/80 shadow-xs">
+                <div className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs">
                   <p className="text-xl font-bold font-serif text-rose-600">4 Houses</p>
                   <p className="text-[11px] text-slate-500 font-medium">Championship</p>
                 </div>
               </motion.div>
             </div>
 
-            {/* Right 5 Columns: 3D Floating Official Campus Building Showcase */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 relative"
-            >
-              <div className="relative rounded-3xl p-3 bg-white/90 backdrop-blur-2xl border border-slate-200/90 shadow-[0_24px_60px_-15px_rgba(15,23,42,0.12)]">
-                {/* 4-House subtle corner aura */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
-                  <Image
-                    src="/images/official/society.jpg"
-                    alt="Sri Aurobindo Education Centre & School Campus, Tulsi Nagar, Bhopal"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 500px"
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-                  
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-amber-300 block mb-1">
-                      Official Campus Photo
-                    </span>
-                    <h3 className="font-serif font-bold text-base leading-tight">
-                      Sri Aurobindo Education Centre (SAEC)
-                    </h3>
-                    <p className="text-xs text-slate-200 font-light mt-0.5">
-                      Auro Mandir Parisar, Behind Kannad Bhawan, Tulsi Nagar, Bhopal
-                    </p>
-                  </div>
-                </div>
-
-                {/* Floating Glass Badges */}
-                <div className="absolute -bottom-4 -left-3 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-md flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-500" />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      Origin
-                    </span>
-                    <span className="text-xs font-bold text-slate-800">Founded July 1989</span>
-                  </div>
-                </div>
-
-                <div className="absolute -top-3 -right-3 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-md flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-sky-600" />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      Recognition
-                    </span>
-                    <span className="text-xs font-bold text-slate-800">MPBSE K–12</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            {/* Right 5 Columns: Multi-Layered Architectural Showcase Card with EditorialImageFrame */}
+            <div className="lg:col-span-5 relative">
+              <EditorialImageFrame
+                src="/images/official/society.jpg"
+                alt="Sri Aurobindo Education Centre & School Campus, Tulsi Nagar, Bhopal"
+                aspectRatio="aspect-[4/3]"
+                caption="Sri Aurobindo Education Centre · Founded July 1989"
+                priority
+                badgeTopLeft={{
+                  title: "Registered July 1989",
+                  subtitle: "Registrar of Firms & Societies, MP",
+                  iconName: "shield",
+                }}
+                badgeBottomRight={{
+                  title: "MPBSE Affiliated",
+                  subtitle: "Nursery to Class XII · Co-Ed",
+                  iconName: "award",
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* ================= 4-COLUMN INSTITUTIONAL KEY-FACTS RIBBON ================= */}
+      <section className="bg-slate-50/80 border-b border-slate-200/80 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                <Calendar className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-900">Academic Session 2026–27</p>
+                <p className="text-[11px] text-slate-500">Commencing 15th June</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-900">Three-Term Architecture</p>
+                <p className="text-[11px] text-slate-500">Continuous Internal Assessments</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                <FlaskConical className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-900">Science Labs & Smart Class</p>
+                <p className="text-[11px] text-slate-500">Hands-on Viva & Models</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center shrink-0">
+                <Users className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-900">Four House System</p>
+                <p className="text-[11px] text-slate-500">Teresa · Amartya · Tagore · Raman</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Infinite House & Campus Ticker */}
+      <InfiniteMarquee speed={24} />
 
       {/* ================= 2. INTERACTIVE FOUR-HOUSE PORTAL ================= */}
       <section className="py-20 bg-gradient-to-b from-transparent via-slate-100/50 to-white relative border-t border-slate-200/80">

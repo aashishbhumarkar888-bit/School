@@ -3,10 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useHouse } from "@/lib/context/HouseContext";
 import { SCHOOL_FACTS, HOUSES } from "@/lib/content/school-data";
 import { HouseId } from "@/lib/types";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import {
   Phone,
   Mail,
@@ -19,11 +17,14 @@ import {
   Compass,
   CheckCircle2,
   Calendar,
+  GraduationCap,
+  ShieldCheck,
+  Building2,
+  Flame,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SiteFooter() {
-  const { activeHouse, setHouse } = useHouse();
   const [isOpenNow, setIsOpenNow] = useState(false);
   const [istTimeStr, setIstTimeStr] = useState("");
 
@@ -47,7 +48,6 @@ export function SiteFooter() {
 
       setIsOpenNow(isWorkingDay && isDuringHours);
 
-      // Format time string
       setIstTimeStr(
         istDate.toLocaleTimeString("en-IN", {
           hour: "2-digit",
@@ -71,145 +71,149 @@ export function SiteFooter() {
   const houseKeys: HouseId[] = ["teresa", "amartya", "tagore", "raman"];
 
   return (
-    <footer className="relative bg-gradient-to-b from-white via-slate-50/95 to-sky-50/40 border-t border-slate-200/80 text-slate-700 pt-16 sm:pt-24 pb-12 overflow-hidden">
-      {/* ================= 1. OVERLAPPING PRE-FOOTER ADMISSION CONVERSION CARD ================= */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative -mt-28 sm:-mt-36 mb-16 sm:mb-20 z-20">
-        <div className="relative rounded-3xl p-[2px] bg-gradient-to-r from-sky-400 via-amber-400 via-emerald-400 to-rose-500 shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-          <div className="relative rounded-[22px] bg-white/95 backdrop-blur-2xl p-6 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="max-w-2xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-sky-600" />
-                <span>Admissions Window Open · Session 2026–27</span>
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
-                Begin Your Child’s Journey at Sri Aurobindo School, Bhopal
+    <footer className="relative bg-white border-t border-slate-200/90 text-slate-700 pt-16 sm:pt-20 pb-12 overflow-hidden">
+      {/* Background Architectural Dot Grid */}
+      <div className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+      {/* ================= 1. OVERLAPPING PRE-FOOTER CONVERSION CARD ================= */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
+        <div className="relative rounded-3xl bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-950 text-white p-8 sm:p-12 shadow-[0_24px_60px_-15px_rgba(30,58,138,0.25)] overflow-hidden">
+          {/* Subtle Top 4-House Gradient Line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-amber-400 via-emerald-400 to-rose-400" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-8 space-y-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-xs font-semibold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>Admissions 2026–27 · Nursery to Class XII</span>
+              </span>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white tracking-tight leading-tight">
+                Nurture Your Child at Sri Aurobindo School
               </h2>
-              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Co-educational K–12 (MPBSE) · Managed by Sri Aurobindo Education Centre (Est. July 1989) · Registration Window: 8:00 AM – 1:00 PM
+
+              <p className="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                Empowering the "Sun-Eyed Children of a Marvellous Dawn" through integral education,
+                equipping them with moral courage, intellectual vigour, and physical vitality.
               </p>
+
+              <div className="flex flex-wrap items-center gap-6 pt-2 text-xs text-slate-300 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>MPBSE State Board Affiliated</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>SAEC Society Est. July 1989</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>₹100/- Registration Proforma</span>
+                </span>
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full lg:w-auto">
-              <Link href="/admissions" className="w-full sm:w-auto">
-                <MagneticButton
-                  variant="primary"
-                  className="w-full sm:w-auto py-3 px-6 text-sm font-bold shadow-lg"
-                >
-                  <span>Apply for Admission</span>
-                  <ArrowRight className="w-4 h-4" />
-                </MagneticButton>
-              </Link>
-              <a
-                href="tel:+917552558286"
-                className="w-full sm:w-auto py-3 px-5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-colors border border-slate-200"
-              >
-                <Phone className="w-4 h-4 text-sky-600" />
-                <span>0755-2558286</span>
-              </a>
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center items-stretch lg:items-end">
               <Link
-                href="/admissions#age-calculator"
-                className="w-full sm:w-auto py-3 px-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors border border-slate-200"
+                href="/admissions"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-blue-900 font-bold text-sm shadow-lg transition-transform hover:scale-[1.02] active:scale-95 text-center"
               >
-                <Calendar className="w-4 h-4 text-emerald-600" />
-                <span>Match Age</span>
+                <span>Admission Roadmap & Enquiry</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/student/login"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs font-semibold backdrop-blur-md transition-colors text-center"
+              >
+                <GraduationCap className="w-4 h-4" />
+                <span>Student & Parent Portal</span>
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ================= 2. INTERACTIVE FOUR-HOUSE CREST RIBBON ================= */}
-        <div className="mb-14 pb-12 border-b border-slate-200">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Four Official School Houses
-              </span>
-              <h3 className="font-serif text-lg font-bold text-slate-900">
-                Click to Shift Website Theme & Aura
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* ================= 2. FOUR HOUSES INSTITUTIONAL CREST RIBBON ================= */}
+        <div className="mb-14 p-6 rounded-3xl bg-slate-50/80 border border-slate-200/90">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div className="flex items-center gap-2">
+              <Flame className="w-4 h-4 text-amber-600" />
+              <h3 className="font-serif font-bold text-sm text-slate-900">
+                The Four Houses Championship Culture
               </h3>
             </div>
-            <span className="text-xs text-slate-500">
-              Active: <strong className="capitalize text-slate-800">{activeHouse} House</strong>
-            </span>
+            <Link
+              href="/houses"
+              className="text-xs font-bold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 group"
+            >
+              <span>Explore House Standings & Quiz</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {houseKeys.map((id) => {
               const house = HOUSES[id];
-              const isSelected = activeHouse === id;
               return (
-                <button
+                <Link
                   key={id}
-                  onClick={() => setHouse(id)}
-                  className={cn(
-                    "text-left p-4 rounded-2xl border transition-all duration-300 relative group cursor-pointer",
-                    isSelected
-                      ? "bg-white shadow-[0_10px_30px_rgba(15,23,42,0.08)] border-slate-300 scale-[1.02]"
-                      : "bg-white/60 hover:bg-white border-slate-200/80 hover:-translate-y-1 hover:shadow-sm"
-                  )}
+                  href="/houses"
+                  className="p-3.5 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-xs transition-all group"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="w-3.5 h-3.5 rounded-full shadow-sm"
-                        style={{ backgroundColor: house.accentHex }}
-                      />
-                      <h4 className="font-serif font-bold text-sm text-slate-900">
-                        {house.name}
-                      </h4>
-                    </div>
-                    {isSelected && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-900 text-white">
-                        Active
-                      </span>
-                    )}
+                  <div className="flex items-center gap-2.5 mb-1.5">
+                    <span
+                      className="w-3 h-3 rounded-full shrink-0 shadow-2xs"
+                      style={{ backgroundColor: house.accentHex }}
+                    />
+                    <h4 className="font-serif font-bold text-xs text-slate-900 group-hover:text-blue-700 transition-colors">
+                      {house.name}
+                    </h4>
                   </div>
-                  <p className="text-xs text-slate-500 line-clamp-1">{house.patron}</p>
-                  <p className="text-[11px] font-medium text-slate-700 mt-1 italic">
-                    "{house.values.slice(0, 3).join(", ")}"
+                  <p className="text-[11px] text-slate-500 font-medium truncate">
+                    {house.patron}
                   </p>
-                </button>
+                  <p className="text-[10px] text-slate-600 mt-0.5 italic line-clamp-1">
+                    "{house.motto}"
+                  </p>
+                </Link>
               );
             })}
           </div>
         </div>
 
-        {/* ================= 3. SPACIOUS 12-COLUMN EDITORIAL DIRECTORY GRID ================= */}
+        {/* ================= 3. 12-COLUMN EDITORIAL DIRECTORY GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-16">
           {/* Cols 1–4: Institutional Identity & Live Office Status */}
-          <div className="lg:col-span-4 space-y-5">
+          <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-400 via-amber-300 to-rose-400 p-[1.5px] shadow-sm">
-                <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center p-1">
-                  <Image
-                    src="/images/official/logo.png"
-                    alt="Sri Aurobindo School Crest"
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200 p-1 shrink-0 shadow-xs">
+                <Image
+                  src="/images/official/logo.png"
+                  alt="Sri Aurobindo School Crest"
+                  width={38}
+                  height={38}
+                  className="object-contain"
+                />
               </div>
               <div>
-                <h3 className="font-serif font-bold text-base text-slate-900 leading-tight">
+                <h3 className="font-serif font-bold text-sm text-slate-900 leading-tight">
                   {SCHOOL_FACTS.fullName}
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 font-medium">
                   {SCHOOL_FACTS.shortAddress} · Est. July 1989
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
-              Managed by <strong>{SCHOOL_FACTS.society}</strong> (Registered with Registrar of Firms & Societies, Madhya Pradesh). Affiliated to the Madhya Pradesh Board of Secondary Education (MPBSE) for Co-educational K–12 Integral Education.
+              Managed by <strong>{SCHOOL_FACTS.society}</strong> (Registered with Registrar of Firms & Societies, Madhya Pradesh). Affiliated with the Madhya Pradesh Board of Secondary Education (MPBSE) for Co-educational K–12 Integral Education.
             </p>
 
             {/* Live IST Campus Status Pill */}
-            <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-between">
+            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2.5">
-                <span className="relative flex h-3 w-3">
+                <span className="relative flex h-2.5 w-2.5">
                   <span
                     className={cn(
                       "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
@@ -218,98 +222,94 @@ export function SiteFooter() {
                   />
                   <span
                     className={cn(
-                      "relative inline-flex rounded-full h-3 w-3",
+                      "relative inline-flex rounded-full h-2.5 w-2.5",
                       isOpenNow ? "bg-emerald-500" : "bg-amber-500"
                     )}
                   />
                 </span>
                 <div>
-                  <span className="text-xs font-bold text-slate-900 block leading-tight">
-                    {isOpenNow
-                      ? "Campus Open Now (7:45 AM – 1:30 PM)"
-                      : "Office Opens Mon–Sat at 7:45 AM"}
+                  <span className="font-bold text-slate-900 block leading-tight">
+                    {isOpenNow ? "Campus Open" : "Campus Closed"}
                   </span>
                   <span className="text-[10px] text-slate-500">
-                    Registration Desk: 8:00 AM – 1:00 PM ({istTimeStr || "IST"})
+                    Mon–Sat: 7:45 AM – 1:30 PM
                   </span>
                 </div>
               </div>
+              <span className="font-mono text-[11px] text-slate-500 font-medium">
+                {istTimeStr}
+              </span>
             </div>
           </div>
 
-          {/* Cols 5–6: Discover & Academics */}
+          {/* Cols 5–6: Discover & Society */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-serif text-xs font-bold text-slate-900 uppercase tracking-wider">
-              Discover & Heritage
+            <h4 className="font-serif text-xs font-bold uppercase tracking-wider text-slate-900">
+              Discover & Society
             </h4>
             <ul className="space-y-2 text-xs text-slate-600">
               <li>
-                <Link href="/about" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">About SAEC & History</span>
+                <Link href="/about" className="hover:text-blue-700 transition-colors">
+                  Heritage & SAEC (1989)
                 </Link>
               </li>
               <li>
-                <Link href="/about#vision-mission" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Vision, Mission & Ideology</span>
+                <Link href="/leadership" className="hover:text-blue-700 transition-colors">
+                  Chairman's Address
                 </Link>
               </li>
               <li>
-                <Link href="/about#chairman" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Chairman’s Message</span>
+                <Link href="/affiliation" className="hover:text-blue-700 transition-colors">
+                  MPBSE Affiliation
                 </Link>
               </li>
               <li>
-                <Link href="/academics" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Four Academic Wings</span>
+                <Link href="/campus" className="hover:text-blue-700 transition-colors">
+                  Campus & Science Labs
                 </Link>
               </li>
               <li>
-                <Link href="/academics#methodology" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Teaching Methodology</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/academics#examination" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Three-Term Exam System</span>
+                <Link href="/alumni" className="hover:text-blue-700 transition-colors">
+                  SAEC Alumni Network
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Cols 7–8: Student Life & Admissions */}
+          {/* Cols 7–8: Academics & Life */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-serif text-xs font-bold text-slate-900 uppercase tracking-wider">
-              Campus & Life
+            <h4 className="font-serif text-xs font-bold uppercase tracking-wider text-slate-900">
+              Academics & Life
             </h4>
             <ul className="space-y-2 text-xs text-slate-600">
               <li>
-                <Link href="/admissions" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Admissions & Age Matcher</span>
+                <Link href="/academics" className="hover:text-blue-700 transition-colors">
+                  K–12 Academic Wings
                 </Link>
               </li>
               <li>
-                <Link href="/school-life" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Four Houses Championship</span>
+                <Link href="/methodology" className="hover:text-blue-700 transition-colors">
+                  Flight Path Pedagogy
                 </Link>
               </li>
               <li>
-                <Link href="/academics#labs" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Science & Computer Labs</span>
+                <Link href="/houses" className="hover:text-blue-700 transition-colors">
+                  Four Houses Hub
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Campus Photo Gallery</span>
+                <Link href="/faculty" className="hover:text-blue-700 transition-colors">
+                  Faculty Directory
                 </Link>
               </li>
               <li>
-                <Link href="/notices" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Official Notices Gazette</span>
+                <Link href="/calendar" className="hover:text-blue-700 transition-colors">
+                  Three-Term Calendar
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-sky-700 transition-colors flex items-center gap-1 group">
-                  <span className="group-hover:translate-x-0.5 transition-transform">Directions & Visit</span>
+                <Link href="/gallery" className="hover:text-blue-700 transition-colors">
+                  Visual Archive
                 </Link>
               </li>
             </ul>
@@ -317,17 +317,17 @@ export function SiteFooter() {
 
           {/* Cols 9–12: Verified Campus Contact Card */}
           <div className="lg:col-span-4">
-            <div className="p-5 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-3">
-              <h4 className="font-serif text-sm font-bold text-slate-900">
-                Verified Campus Coordinates
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+              <h4 className="font-serif text-xs font-bold text-slate-900 uppercase tracking-wider">
+                Auro Mandir Parisar Coordinates
               </h4>
               <p className="text-xs text-slate-600 flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span>{SCHOOL_FACTS.address}</span>
               </p>
-              <div className="pt-2 border-t border-slate-100 space-y-2 text-xs">
+              <div className="pt-2 border-t border-slate-200/60 space-y-1.5 text-xs">
                 <p className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-sky-600 shrink-0" />
+                  <Phone className="w-4 h-4 text-blue-600 shrink-0" />
                   <a href="tel:+917552558286" className="text-slate-800 font-semibold hover:underline">
                     0755-2558286
                   </a>
@@ -340,18 +340,18 @@ export function SiteFooter() {
                 </p>
                 <p className="flex items-center gap-2 text-slate-500">
                   <Clock className="w-4 h-4 text-rose-500 shrink-0" />
-                  <span>Registration Window: 8:00 AM – 1:00 PM</span>
+                  <span>Office: 8:00 AM – 1:00 PM</span>
                 </p>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <a
                   href="https://maps.google.com/?q=Sri+Aurobindo+School+Tulsi+Nagar+Bhopal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-200"
+                  className="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-200 shadow-2xs"
                 >
-                  <span>Get Google Maps Directions</span>
+                  <span>Google Maps Directions</span>
                   <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
                 </a>
               </div>
@@ -360,40 +360,34 @@ export function SiteFooter() {
         </div>
 
         {/* ================= 4. GIANT ARCHITECTURAL WATERMARK & COPYRIGHT ================= */}
-        <div className="pt-8 pb-4">
-          <div className="text-[clamp(2.2rem,6.5vw,5.5rem)] font-serif font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-500/15 via-amber-500/15 via-emerald-500/15 to-rose-500/15 select-none text-center uppercase leading-none">
+        <div className="pt-4 pb-2">
+          <div className="text-[clamp(1.8rem,5.5vw,4.5rem)] font-serif font-black tracking-tight text-slate-200/70 select-none text-center uppercase leading-none">
             Sri Aurobindo School · 1989
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="mt-6 pt-5 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            © {new Date().getFullYear()} {SCHOOL_FACTS.fullName}. All rights reserved. Affiliated to MPBSE.
+            © {new Date().getFullYear()} {SCHOOL_FACTS.fullName}. Affiliated with MPBSE. Managed by SAEC (Reg. July 1989).
           </p>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <Link href="/about#vision-mission" className="hover:text-slate-900 transition-colors">
-              Vision & Mission
+            <Link href="/notices" className="hover:text-slate-900 transition-colors">
+              Gazette Notices
             </Link>
-            <Link href="/admissions#rules" className="hover:text-slate-900 transition-colors">
+            <Link href="/admissions" className="hover:text-slate-900 transition-colors">
               Admission Norms
             </Link>
-            <a
-              href="https://sas.edu.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-slate-900 transition-colors"
-            >
-              Institutional Portal
-            </a>
-            {/* Clickable Keyboard Shortcut Pill */}
+            <Link href="/careers" className="hover:text-slate-900 transition-colors">
+              Careers
+            </Link>
             <button
               onClick={openAdminModal}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-medium transition-colors border border-slate-200 cursor-pointer"
-              title="Staff & Administrator Gateway (Ctrl + Shift + A)"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold transition-colors border border-slate-200 cursor-pointer"
+              title="Staff Gateway (Ctrl + Shift + A)"
             >
               <Command className="w-3 h-3 text-slate-500" />
-              <span>Staff Gateway · Ctrl + Shift + A</span>
+              <span>Staff Gateway</span>
             </button>
           </div>
         </div>

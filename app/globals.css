@@ -4,85 +4,59 @@
 
 @layer base {
   :root {
-    --house-teresa: 14 165 233;
-    --house-amartya: 245 158 11;
-    --house-tagore: 16 185 129;
-    --house-raman: 239 68 68;
+    /* Pure-White Editorial Design Tokens */
+    --canvas-bg: #FFFFFF;
+    --bento-surface: #F8FAFC;
+    --brand-primary: #1D4ED8;
+    --brand-primary-hover: #2563EB;
+    --brand-heritage: #D97706;
 
-    --active-house-glow: rgba(14, 165, 233, 0.18);
-    --active-house-wash: #E0F2FE;
-    --active-house-border: rgba(14, 165, 233, 0.4);
-    --active-house-accent: #0284C7;
-  }
-
-  [data-house="teresa"] {
-    --active-house-glow: rgba(14, 165, 233, 0.18);
-    --active-house-wash: #E0F2FE;
-    --active-house-border: rgba(14, 165, 233, 0.35);
-    --active-house-accent: #0284C7;
-  }
-
-  [data-house="amartya"] {
-    --active-house-glow: rgba(245, 158, 11, 0.18);
-    --active-house-wash: #FEF9C3;
-    --active-house-border: rgba(245, 158, 11, 0.35);
-    --active-house-accent: #D97706;
-  }
-
-  [data-house="tagore"] {
-    --active-house-glow: rgba(16, 185, 129, 0.18);
-    --active-house-wash: #D1FAE5;
-    --active-house-border: rgba(16, 185, 129, 0.35);
-    --active-house-accent: #059669;
-  }
-
-  [data-house="raman"] {
-    --active-house-glow: rgba(239, 68, 68, 0.18);
-    --active-house-wash: #FFE4E6;
-    --active-house-border: rgba(239, 68, 68, 0.35);
-    --active-house-accent: #DC2626;
+    /* Fixed Four-House Emblem Colors (Never used as global theme switchers) */
+    --house-teresa: #0284C7;
+    --house-amartya: #D97706;
+    --house-tagore: #059669;
+    --house-raman: #E11D48;
   }
 
   body {
-    @apply bg-[#FCFBF9] text-slate-800 font-sans antialiased selection:bg-sky-500/20 selection:text-sky-900;
+    @apply bg-white text-slate-800 font-sans antialiased selection:bg-blue-600/15 selection:text-blue-900;
     overflow-x: hidden;
   }
 
   /* Custom subtle light scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: #F8FAFC;
+    background: #FFFFFF;
   }
   ::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
+    background: #E2E8F0;
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
+    background: #CBD5E1;
   }
 }
 
 @layer utilities {
   .glass-card {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(226, 232, 240, 0.85);
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 232, 240, 0.9);
     box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
   }
 
   .glass-card-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .glass-card-hover:hover {
-    border-color: var(--active-house-border);
-    box-shadow: 0 20px 40px -15px var(--active-house-glow);
+    border-color: #CBD5E1;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.09);
   }
 
   .glass-pearl {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(226, 232, 240, 0.9);
@@ -91,12 +65,12 @@
   .bg-grid-pattern {
     background-size: 32px 32px;
     background-image: 
-      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      linear-gradient(to right, rgba(203, 213, 225, 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(203, 213, 225, 0.35) 1px, transparent 1px);
   }
 
   .bg-dots-pattern {
-    background-image: radial-gradient(rgba(148, 163, 184, 0.25) 1px, transparent 1px);
+    background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
@@ -106,14 +80,14 @@
     -webkit-text-fill-color: transparent;
   }
 
-  .text-gradient-aurora {
-    background: linear-gradient(135deg, #0284C7 0%, #059669 35%, #D97706 70%, #DC2626 100%);
+  .text-gradient-sapphire {
+    background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 50%, #2563EB 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
 
-/* Reduced motion support */
+/* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

@@ -16,6 +16,8 @@ import {
   Camera,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import { ScrollReveal, KineticText } from "@/components/ui/ScrollReveal";
 
 const CATEGORIES = ["All", "Campus", "Academics", "Sports", "Cultural"] as const;
 
@@ -52,21 +54,34 @@ export default function GalleryPage() {
 
   return (
     <div className="bg-[#FCFBF9] text-slate-900 min-h-screen">
-      {/* ================= 1. HEADER BANNER ================= */}
-      <section className="relative py-20 bg-gradient-to-b from-sky-50/70 via-white to-[#FCFBF9] border-b border-slate-200/80 overflow-hidden">
+      {/* ================= 1. HEADER BANNER WITH LIVING AURORA ================= */}
+      <section className="relative pt-28 pb-20 overflow-hidden border-b border-slate-200/80">
+        <AuroraBackground className="absolute inset-0 z-0" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200 shadow-xs inline-flex items-center gap-1.5 mb-4">
-              <Camera className="w-3.5 h-3.5 text-sky-600" />
-              <span>Visual Chronicles · Auro Mandir Parisar</span>
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-slate-900 mt-2 tracking-tight leading-tight">
-              Life at Auro Mandir Parisar
+            <ScrollReveal variant="fade-up">
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-50 text-sky-800 border border-sky-200 shadow-2xs inline-flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+                <Camera className="w-3.5 h-3.5 text-sky-600" />
+                <span>Visual Chronicles · Auro Mandir Parisar</span>
+              </span>
+            </ScrollReveal>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-slate-900 tracking-tight leading-[1.12]">
+              <KineticText
+                text="Life at Auro Mandir Parisar"
+                highlightWords={["Auro", "Mandir", "Parisar"]}
+                delay={0.1}
+              />
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed font-normal">
-              Explore authentic glimpses into daily life at Sri Aurobindo School: our green campus,
-              hands-on science laboratories, central library, and inter-house athletic tournaments.
-            </p>
+
+            <ScrollReveal variant="fade-up" delay={0.2}>
+              <p className="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed font-normal">
+                Explore authentic glimpses into daily life at Sri Aurobindo School: our green campus,
+                hands-on science laboratories, central library, and inter-house athletic tournaments.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>

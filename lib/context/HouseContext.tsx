@@ -17,23 +17,18 @@ export function HouseProvider({ children }: { children: React.ReactNode }) {
   const [activeHouse, setActiveHouse] = useState<HouseId>("teresa");
 
   useEffect(() => {
-    // Check if user previously picked a house
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("sas_active_house") as HouseId | null;
+      const saved = localStorage.getItem("sas_student_house") as HouseId | null;
       if (saved && ["teresa", "amartya", "tagore", "raman"].includes(saved)) {
         setActiveHouse(saved);
-        document.documentElement.setAttribute("data-house", saved);
       }
     }
   }, []);
 
   const setHouse = (house: HouseId) => {
     setActiveHouse(house);
-    if (typeof document !== "undefined") {
-      document.documentElement.setAttribute("data-house", house);
-    }
     if (typeof window !== "undefined") {
-      localStorage.setItem("sas_active_house", house);
+      localStorage.setItem("sas_student_house", house);
     }
   };
 
