@@ -306,6 +306,94 @@ export const AGE_ELIGIBILITY_TABLE = [
   },
 ];
 
+export const APPROVED_FEE_POLICY = {
+  registrationProformaFee: "₹100/-",
+  registrationNote: "Payable in cash at the School Accounts Counter upon obtaining the official registration proforma.",
+  governingBody: "Sri Aurobindo Education Society (SAEC) Governing Body",
+  attachedSchedulePolicy:
+    "In strict adherence to official institutional regulations, comprehensive class-wise tuition fees (Nursery through Class XII), one-time admission charges, annual development fees, and optional bus transport charges are governed by the Official Attached Schedule approved annually by the SAEC Governing Body. The verified schedule is available at the school accounts counter.",
+  terminalExamClearanceRule:
+    "As per school regulations, all tuition and transport fee installments must be cleared prior to the commencement of Terminal Examinations in September, December, and March/April for the issuance of examination admit cards.",
+  feeHeads: [
+    {
+      head: "Registration Proforma Fee",
+      amount: "₹100/-",
+      frequency: "One-Time (At time of application)",
+      status: "Confirmed Official Figure",
+      description: "Payable at school office counter when obtaining the official admission proforma and prospectus.",
+    },
+    {
+      head: "One-Time Admission Fee",
+      amount: "As per SAEC Approved Schedule",
+      frequency: "One-Time (Upon confirmed admission)",
+      status: "Governed by Attached Schedule",
+      description: "Applicable only upon confirmation of seat by the School Admission Committee.",
+    },
+    {
+      head: "Tuition Fee (Nursery to Class XII)",
+      amount: "As per SAEC Approved Schedule",
+      frequency: "Quarterly / 3-Term Academic Cycle",
+      status: "Governed by Attached Schedule",
+      description: "Class-wise tuition fee structured around the 3-term academic calendar (September, December, March).",
+    },
+    {
+      head: "Annual Development & Activity Charges",
+      amount: "As per SAEC Approved Schedule",
+      frequency: "Annual",
+      status: "Governed by Attached Schedule",
+      description: "Covers library access, audiovisual smart classroom instruction, sports infrastructure, and cultural events.",
+    },
+    {
+      head: "Science Laboratory & Practical Fee",
+      amount: "As per SAEC Approved Schedule",
+      frequency: "Annual / Term (Classes IX–XII)",
+      status: "Governed by Attached Schedule",
+      description: "Covers consumables, apparatus, and viva assessments for Physics, Chemistry, and Biology practicals.",
+    },
+    {
+      head: "Optional Route Bus Transportation",
+      amount: "Distance-Slab Based",
+      frequency: "Quarterly",
+      status: "Optional Facility",
+      description: "Calculated based on pick-up and drop distance slabs across designated Bhopal bus routes.",
+    },
+  ],
+};
+
+export const ADMISSION_DOCUMENT_CHECKLIST = [
+  {
+    title: "Official Certificate of Birth",
+    desc: "Original certificate for verification along with an attested photocopy issued by the Municipal Corporation or Gram Panchayat.",
+    mandatory: true,
+  },
+  {
+    title: "Completed Registration Proforma",
+    desc: "Duly filled proforma obtained from the school office counter with the ₹100/- registration receipt.",
+    mandatory: true,
+  },
+  {
+    title: "Recent Passport Photographs",
+    desc: "3 recent identical passport-size colour photographs of the candidate with name written on the reverse.",
+    mandatory: true,
+  },
+  {
+    title: "Transfer Certificate (TC)",
+    desc: "For Classes II through XII: Original TC from the recognized previous school, countersigned by the competent educational authority (DEO / Board).",
+    mandatory: true,
+  },
+  {
+    title: "Previous Year Progress Report / Mark Sheet",
+    desc: "Attested copy of the final report card / marks statement of the preceding academic session.",
+    mandatory: true,
+  },
+  {
+    title: "Aadhar & Identity Verification",
+    desc: "Photocopy of student's and parent's Aadhar cards for MP Shiksha Portal student enrollment registry.",
+    mandatory: true,
+  },
+];
+
+
 export const CAMPUS_FACILITIES = [
   {
     id: "science-labs",

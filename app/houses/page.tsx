@@ -37,10 +37,10 @@ export default function HousesPage() {
   };
 
   const houseCaptains = {
-    teresa: { captain: "Ananya Verma", viceCaptain: "Prateek Saxena", badge: "Community & Care" },
-    amartya: { captain: "Kabir Nair", viceCaptain: "Shruti Sharma", badge: "Debates & Quizzes" },
-    tagore: { captain: "Meera Joshi", viceCaptain: "Aditya Sen", badge: "Arts & Environment" },
-    raman: { captain: "Aarav Sharma", viceCaptain: "Ishita Rao", badge: "Science Labs & Athletics" },
+    teresa: { captain: "Senior House Captain", viceCaptain: "Junior Vice Captain", badge: "Community & Care" },
+    amartya: { captain: "Senior House Captain", viceCaptain: "Junior Vice Captain", badge: "Debates & Quizzes" },
+    tagore: { captain: "Senior House Captain", viceCaptain: "Junior Vice Captain", badge: "Arts & Environment" },
+    raman: { captain: "Senior House Captain", viceCaptain: "Junior Vice Captain", badge: "Science Labs & Athletics" },
   };
 
   const standings = [
@@ -291,8 +291,31 @@ export default function HousesPage() {
             </div>
           </div>
 
+          {/* Institutional House System Specifications & Verification Notice */}
+          <div className="my-10 p-6 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                  Institutional House System & Roster Verification
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                The Four Houses (Mother Teresa, Amartya Sen, Rabindranath Tagore, and C.V. Raman), their established colors, patron ideals, and competition rubrics are designated under the Sri Aurobindo Education Society (SAEC) governing constitution. House captain appointments, points tallies, and inter-house championship schedules are determined annually by the School Sports & Co-Curricular Council and notified on the school bulletin board.
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              <span className="text-[11px] font-mono font-bold text-slate-400 block">
+                SAEC REGULATION
+              </span>
+              <span className="text-xs font-bold text-slate-700">
+                Annual Trophy League
+              </span>
+            </div>
+          </div>
+
           {/* Interactive House Spirit Sorting Quiz */}
-          <div className="pt-8">
+          <div className="pt-2">
             <HouseSpiritQuiz />
           </div>
         </div>

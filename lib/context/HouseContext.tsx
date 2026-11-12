@@ -10,7 +10,7 @@ interface HouseContextType {
 
 const HouseContext = createContext<HouseContextType>({
   activeHouse: "teresa",
-  setHouse: () => {},
+  setHouse: () => { },
 });
 
 export function HouseProvider({ children }: { children: React.ReactNode }) {

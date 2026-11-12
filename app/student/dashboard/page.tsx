@@ -643,20 +643,22 @@ export default function StudentDashboardPage() {
                     className="p-4 rounded-2xl border border-slate-200/80 bg-slate-50/40 hover:bg-white transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                   >
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <h4 className="text-sm font-bold text-slate-900">{fee.term}</h4>
-                        <span className="text-xs font-bold text-slate-900">{fee.amount}</span>
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+                          Cleared (Exam Hall Ticket Eligible)
+                        </span>
                       </div>
-                      <p className="text-xs text-slate-500">
-                        Paid on: {fee.paidDate} • Receipt:{" "}
-                        <span className="font-mono">{fee.receiptNumber}</span>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Tariff: As per Official SAEC Schedule • Reconciled: {fee.paidDate} • Receipt:{" "}
+                        <span className="font-mono font-semibold">{fee.receiptNumber}</span>
                       </p>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
                         <CheckCircle2 className="w-3 h-3" />
-                        <span>{fee.status}</span>
+                        <span>Cleared · Hall Ticket Eligible</span>
                       </span>
 
                       <button
@@ -701,24 +703,23 @@ export default function StudentDashboardPage() {
                   className="absolute inset-0 [backface-visibility:hidden] rounded-3xl bg-white border-2 border-slate-200/90 p-6 flex flex-col justify-between overflow-hidden shadow-md"
                   style={{ borderColor: student.houseColor }}
                 >
-                  {/* Top Bar with School Crest */}
+                  {/* Top Bar with School Crest & Official Logo */}
                   <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                     <div className="flex items-center gap-2">
                       <Image
                         src="/images/official/logo.png"
-                        alt="Logo"
+                        alt="Sri Aurobindo School Emblem"
                         width={28}
                         height={28}
-                        className="object-contain"
+                        className="object-contain shrink-0"
                       />
-                      <div>
-                        <h4 className="font-serif font-bold text-xs text-slate-900 leading-tight">
-                          SRI AUROBINDO SCHOOL
-                        </h4>
-                        <span className="text-[9px] text-slate-400 font-medium">
-                          BHOPAL · EST. JULY 1989
-                        </span>
-                      </div>
+                      <Image
+                        src="/images/official/school-logo-blue.png"
+                        alt="Sri Aurobindo School"
+                        width={130}
+                        height={22}
+                        className="h-5 w-auto object-contain object-left"
+                      />
                     </div>
                     <span
                       className="px-2 py-0.5 rounded text-[10px] font-bold uppercase text-white shadow-xs"
@@ -949,12 +950,12 @@ export default function StudentDashboardPage() {
                   <span className="text-slate-800">{selectedReceipt.term}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500">Amount Received</span>
-                  <span className="font-bold text-emerald-700 text-sm">{selectedReceipt.amount}</span>
+                  <span className="text-slate-500">Tariff Category</span>
+                  <span className="font-bold text-emerald-700 text-xs sm:text-sm">Cleared (As per Official SAEC Schedule)</span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-500">Status</span>
-                  <span className="font-semibold text-emerald-700">Verified & Reconciled</span>
+                  <span className="font-semibold text-emerald-700">Exam Hall Ticket Eligible</span>
                 </div>
               </div>
 

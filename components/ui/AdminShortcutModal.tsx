@@ -157,7 +157,7 @@ export function AdminShortcutModal() {
                       type={showPassword ? "text" : "password"}
                       value={passphrase}
                       onChange={(e) => setPassphrase(e.target.value)}
-                      placeholder="Enter passkey (e.g. aurobindo@1989)"
+                      placeholder="Enter administrator passkey"
                       autoFocus
                       className="w-full px-4 py-3 pr-11 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-mono focus:border-amber-500 focus:bg-white focus:outline-none transition-colors"
                     />
@@ -182,7 +182,7 @@ export function AdminShortcutModal() {
               </form>
 
               <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Passphrase: aurobindo@1989</span>
+                <span>Authorized Staff & Faculty Access</span>
                 <span>Press Esc to dismiss</span>
               </div>
             </div>

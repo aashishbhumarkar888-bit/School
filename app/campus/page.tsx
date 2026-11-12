@@ -227,6 +227,29 @@ export default function CampusPage() {
               ))}
             </div>
           </div>
+
+          {/* Institutional Specifications & Verification Disclosure Notice */}
+          <div className="mt-8 p-6 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                  Verified Facility Standards & Statutory Compliance
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                All campus facilities—including science laboratories (Physics, Chemistry, Biology), audiovisual smart classrooms, library cataloguing, fire safety systems, and water purification installations—comply with Madhya Pradesh Board of Secondary Education (MPBSE) affiliation mandates and are subject to annual audit by the Sri Aurobindo Education Society (SAEC) Governing Body. Room dimensions, stock registers, and lab safety logs are maintained at the administrative office for inspection.
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              <span className="text-[11px] font-mono font-bold text-slate-400 block">
+                AUDIT COMPLIANT
+              </span>
+              <span className="text-xs font-bold text-slate-700">
+                SAEC Charter 1989
+              </span>
+            </div>
+          </div>
         </div>
       </section>
     </div>

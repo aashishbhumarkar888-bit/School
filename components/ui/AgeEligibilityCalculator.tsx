@@ -99,7 +99,7 @@ export function AgeEligibilityCalculator() {
               <Sparkles className="w-3.5 h-3.5 text-sky-600" />
               <span>Official MPBSE Age Matcher</span>
             </span>
-            <span className="text-xs text-slate-500 font-medium">June Session Cutoff</span>
+            <span className="text-xs text-slate-500 font-medium">Session Cutoff · 15 June Onwards</span>
           </div>
 
           <div>
@@ -192,7 +192,7 @@ export function AgeEligibilityCalculator() {
                   Eligible For
                 </span>
                 <span className="text-xs text-slate-500 flex items-center gap-1 font-medium">
-                  <Calendar className="w-3.5 h-3.5 text-slate-400" /> June Session
+                  <Calendar className="w-3.5 h-3.5 text-slate-400" /> June Session (From 15th June)
                 </span>
               </div>
 
@@ -208,11 +208,11 @@ export function AgeEligibilityCalculator() {
               <div className="space-y-2 mb-6 text-xs text-slate-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Registration Window: 8:00 AM – 1:00 PM</span>
+                  <span>Registration: 15 June Onwards (8:00 AM – 1:00 PM)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Proforma Fee: ₹100/- with Birth Certificate</span>
+                  <span>Official Proforma: ₹100/- with Birth Certificate</span>
                 </div>
               </div>
 

@@ -16,116 +16,145 @@ import {
   Building2,
   Mail,
   Search,
+  FlaskConical,
+  Trophy,
+  Sliders,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface FacultyMember {
-  name: string;
-  role: string;
-  department: "Science" | "Mathematics" | "Humanities" | "Languages" | "Pre-Primary" | "IT & Library" | "Sports";
-  qualifications: string;
-  experienceYears: number;
-  houseMentorship?: string;
-  focusArea: string;
+interface DepartmentWing {
+  id: string;
+  wingTitle: string;
+  gradeBracket: string;
+  curriculumFocus: string;
+  methodology: string;
+  rolesIncluded: string[];
+  houseAlignment: string;
+  coordinatorsNotice: string;
 }
 
-const FACULTY_LIST: FacultyMember[] = [
+const ACADEMIC_WINGS: DepartmentWing[] = [
   {
-    name: "Dr. R.K. Mishra",
-    role: "Head of Department — Physics & Senior Sciences",
-    department: "Science",
-    qualifications: "M.Sc. (Physics), Ph.D., B.Ed.",
-    experienceYears: 18,
-    houseMentorship: "Raman House Mentor",
-    focusArea: "Board Practical Viva-Voce & Working Hydraulic / Optics Models",
+    id: "pre-primary",
+    wingTitle: "Pre-Primary Wing (Tiny Tots)",
+    gradeBracket: "Nursery, KG-1 & KG-2",
+    curriculumFocus: "Play-based phonics, sensorial discovery, fine motor coordination, and emotional security.",
+    methodology: "Different Strokes & Joy of Flying early childhood pedagogy.",
+    rolesIncluded: [
+      "Head of Early Childhood Learning",
+      "Phonics & Language Arts Instructors",
+      "Sensori-Motor & Creative Play Specialists",
+      "Child Counseling & Care Associates",
+    ],
+    houseAlignment: "Teresa House (Care & Empathy)",
+    coordinatorsNotice: "Faculty roster reviewed annually by SAEC Pre-Primary Advisory Panel.",
   },
   {
-    name: "Dr. Ananya Roy",
-    role: "Senior Faculty — Chemistry",
-    department: "Science",
-    qualifications: "M.Sc. (Chemistry), Ph.D.",
-    experienceYears: 14,
-    houseMentorship: "Raman House Mentor",
-    focusArea: "Organic Synthesis & Practical Titration Journals",
+    id: "primary",
+    wingTitle: "Primary Wing",
+    gradeBracket: "Classes I to V",
+    curriculumFocus: "Foundational literacy, mental arithmetic, Environmental Studies (EVS), and expressive arts.",
+    methodology: "Multiple Intelligences Framework with hands-on activity sessions.",
+    rolesIncluded: [
+      "Primary Wing Academic Coordinator",
+      "English & Hindi Language Specialists",
+      "Arithmetic & Problem Solving Mentors",
+      "Environmental Science Instructors",
+      "Visual Arts & Creative Expression Faculty",
+    ],
+    houseAlignment: "Amartya & Tagore Houses",
+    coordinatorsNotice: "Continuous comprehensive assessment aligned with MPBSE foundational guidelines.",
   },
   {
-    name: "Mrs. Shashi Saxena",
-    role: "Head of Department — Mathematics",
-    department: "Mathematics",
-    qualifications: "M.Sc. (Mathematics), B.Ed.",
-    experienceYears: 16,
-    houseMentorship: "Amartya House Mentor",
-    focusArea: "Calculus, Coordinate Geometry & Vedic Mental Arithmetic",
+    id: "middle",
+    wingTitle: "Middle School Wing",
+    gradeBracket: "Classes VI to VIII",
+    curriculumFocus: "Formal scientific inquiry, social sciences, integrated mathematics, and Sanskrit/third language.",
+    methodology: "The Flight Path inquiry-based learning and project collaboration.",
+    rolesIncluded: [
+      "Middle School Academic Supervisor",
+      "Integrated Science Instructors",
+      "Mathematics & Logical Analysis Mentors",
+      "History, Civics & Geography Faculty",
+      "Sanskrit & Classical Languages Specialists",
+    ],
+    houseAlignment: "Inter-House Academic Debating League",
+    coordinatorsNotice: "Cumulative promotion criteria evaluated across Three Examination Terms.",
   },
   {
-    name: "Mrs. Priya Nambiar",
-    role: "Head of Department — English & Classical Literature",
-    department: "Languages",
-    qualifications: "M.A. (English), M.Phil., B.Ed.",
-    experienceYears: 15,
-    houseMentorship: "Tagore House Mentor",
-    focusArea: "Savitri Literary Analysis, Rhetoric & Creative Expression",
+    id: "secondary",
+    wingTitle: "Secondary & Senior Secondary Wing",
+    gradeBracket: "Classes IX to XII (MPBSE)",
+    curriculumFocus: "Rigorous preparation for Madhya Pradesh Board examinations across Science, Commerce & Humanities.",
+    methodology: "Rigorous theory consolidation, board answer drafting, and remedial subject mentoring.",
+    rolesIncluded: [
+      "Senior Secondary Academic Coordinator",
+      "Senior Physics & Applied Mechanics Faculty",
+      "Chemistry & Analytical Assay Faculty",
+      "Higher Mathematics & Vector Calculus Faculty",
+      "Biology & Ecological Systems Mentors",
+      "Commerce, Accountancy & Economics Faculty",
+    ],
+    houseAlignment: "All Four Championship Houses",
+    coordinatorsNotice: "Specialized board examiners supervising 33%–40% passing benchmarks and remedial clinics.",
   },
   {
-    name: "Mr. Anand Tiwari",
-    role: "Senior Faculty — Social Sciences & History",
-    department: "Humanities",
-    qualifications: "M.A. (History), B.Ed.",
-    experienceYears: 12,
-    houseMentorship: "Amartya House Mentor",
-    focusArea: "Indian Constitution, Heritage of MP & Global Geopolitics",
+    id: "science-labs",
+    wingTitle: "Science Laboratory & Practical Viva Faculty",
+    gradeBracket: "Classes IX to XII Practicals",
+    curriculumFocus: "Hands-on laboratory experiments, certified journal maintenance, and external board viva training.",
+    methodology: "Authentic scientific apparatus operation, chemical titration safety, and demonstrable working models.",
+    rolesIncluded: [
+      "Physics Laboratory Custodian & Viva Specialist",
+      "Chemistry Laboratory Officer & Reagent Manager",
+      "Biological Sciences Specimen Demonstrator",
+      "Working Model Exhibition Coordinators",
+    ],
+    houseAlignment: "Raman House (Scientific Inquiry & Truth)",
+    coordinatorsNotice: "Statutory laboratory apparatus and safety standards audited by MPBSE inspection committees.",
   },
   {
-    name: "Mrs. Sunita Joshi",
-    role: "Head of Pre-Primary Wing (Tiny Tots)",
-    department: "Pre-Primary",
-    qualifications: "B.Sc., Early Childhood Care & Education (ECCE)",
-    experienceYears: 13,
-    houseMentorship: "Teresa House Mentor",
-    focusArea: "Phonics Blends, Sensori-Motor Play & Emotional Security",
+    id: "library",
+    wingTitle: "Central Library & Research Faculty",
+    gradeBracket: "School-Wide (Classes I to XII)",
+    curriculumFocus: "Curated academic volumes, Indian heritage literature, Sri Aurobindo's Savitri, and general knowledge journals.",
+    methodology: "Daily mandatory scheduled class reading periods fostering lifelong literary communion.",
+    rolesIncluded: [
+      "Chief Librarian & Knowledge Sanctuary Curator",
+      "Assistant Librarian & Periodicals Custodian",
+      "Digital Research & Reference Guide",
+    ],
+    houseAlignment: "Tagore House (Literary Brilliance & Poise)",
+    coordinatorsNotice: "Catalogued book lending, open-stack reading hours, and annual literary colloquium supervision.",
   },
   {
-    name: "Mr. Deepak Sen",
-    role: "Coordinator — Computer Science & Smart Classrooms",
-    department: "IT & Library",
-    qualifications: "M.C.A., B.Ed.",
-    experienceYears: 10,
-    houseMentorship: "Amartya House Mentor",
-    focusArea: "Foundational Python, Multimedia Smart Class & IT Literacy",
-  },
-  {
-    name: "Mrs. Vandana Joshi",
-    role: "Chief Librarian & Knowledge Sanctuary Curator",
-    department: "IT & Library",
-    qualifications: "M.Lib.Sc., B.Lib.",
-    experienceYears: 15,
-    houseMentorship: "Tagore House Mentor",
-    focusArea: "Daily Class Library Hours, Research Cataloging & Reading Logs",
-  },
-  {
-    name: "Coach Vikram Singh",
-    role: "Director of Physical Education & Athletics",
-    department: "Sports",
-    qualifications: "M.P.Ed., Certified NIS Volleyball Coach",
-    experienceYears: 14,
-    houseMentorship: "Raman House Sports Advisor",
-    focusArea: "Volleyball Premier League, Basketball Drills & Strategic Chess",
+    id: "sports",
+    wingTitle: "Physical Education & Sports Coaches",
+    gradeBracket: "School-Wide (Pre-Primary to Class XII)",
+    curriculumFocus: "Physical vitality, competitive sportsmanship, and mental focus across indoor and outdoor sports.",
+    methodology: "Daily drill, specialized team coaching, and SAEC Rolling Trophy tournament matches.",
+    rolesIncluded: [
+      "Director of Physical Education",
+      "Outdoor Court Coaches (Volleyball, Basketball, Badminton)",
+      "Indoor Arena Instructors (Chess, Carrom, Table Tennis)",
+      "Annual Athletic Meet Coordinators",
+    ],
+    houseAlignment: "Four-House Rolling Trophy Athletics League",
+    coordinatorsNotice: "Coaching sessions conducted on official Parisar sports grounds and indoor arena.",
   },
 ];
 
 export default function FacultyPage() {
-  const [selectedDept, setSelectedDept] = useState<string>("All");
+  const [selectedWing, setSelectedWing] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const departments = ["All", "Science", "Mathematics", "Languages", "Humanities", "Pre-Primary", "IT & Library", "Sports"];
-
-  const filteredFaculty = FACULTY_LIST.filter((f) => {
-    const matchDept = selectedDept === "All" || f.department === selectedDept;
-    const matchSearch =
-      f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      f.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      f.focusArea.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchDept && matchSearch;
+  const filteredWings = ACADEMIC_WINGS.filter((wing) => {
+    const matchesFilter = selectedWing === "all" || wing.id === selectedWing;
+    const matchesSearch =
+      wing.wingTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      wing.curriculumFocus.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      wing.rolesIncluded.some((r) => r.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesFilter && matchesSearch;
   });
 
   return (
@@ -139,30 +168,34 @@ export default function FacultyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left 7 Columns */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
                 <Users className="w-3.5 h-3.5 text-blue-600" />
-                <span>Dedicated Subject Specialists & Character Mentors</span>
+                <span>Academic Faculty & Departmental Structure</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
-                Faculty Directory & Mentorship Charter
+                Our Dedicated Educators & Academic Wings
               </h1>
 
               <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
-                At Sri Aurobindo School, our educators are not merely deliverers of curriculum; they are
-                living exemplars of patience, empathy, and intellectual rigour. With an enviable 1:20
-                teacher-student ratio, every child is personally guided through their academic and emotional
-                growth.
+                Guided by the integral educational philosophy of Sri Aurobindo and The Mother, our teaching
+                faculty combines deep subject mastery with nurturing care. Structured across dedicated
+                wings—from Pre-Primary play to Senior Secondary state board practicals—our educators
+                foster clarity of intellect, strength of will, and poise of heart.
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-700">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>100% Trained & Certified Mentors</span>
+                  <span>MPBSE Affiliated Pedagogy</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Quad-Partnership Parent Consultations</span>
+                  <span>The Flight Path & Multiple Intelligences</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Four-House Mentor Framework</span>
                 </span>
               </div>
             </div>
@@ -170,18 +203,18 @@ export default function FacultyPage() {
             {/* Right 5 Columns: Editorial Frame */}
             <div className="lg:col-span-5">
               <EditorialImageFrame
-                src="/images/official/vm.jpg"
-                alt="Faculty and Students in Cultural Assembly"
-                caption="Mentors & Scholars Celebrating Sri Aurobindo Foundation Day"
+                src="/images/official/method.jpg"
+                alt="Teaching Faculty and Pedagogical Methodology at Sri Aurobindo School"
+                caption="Pedagogical Excellence Guided by Integral Harmony"
                 badgeTopLeft={{
-                  title: "1:20 Mentorship",
-                  subtitle: "Individual Care Ratio",
-                  iconName: "users",
+                  title: "Integral Faculty",
+                  subtitle: "Child-Centric Pedagogy",
+                  iconName: "award",
                 }}
                 badgeBottomRight={{
-                  title: "Lifelong Mentors",
-                  subtitle: "Continuous Professional Training",
-                  iconName: "award",
+                  title: "Auro Mandir Parisar",
+                  subtitle: "Tulsi Nagar, Bhopal",
+                  iconName: "building",
                 }}
                 priority
               />
@@ -190,69 +223,106 @@ export default function FacultyPage() {
         </div>
       </section>
 
-      {/* 4-Column Institutional Key-Facts Ribbon */}
-      <section className="bg-slate-50/80 border-b border-slate-200/80 py-6">
+      {/* Management CMS Integration Notice Bar */}
+      <section className="bg-slate-50 border-b border-slate-200/90 py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                  Official Academic Governance & Staff Registry
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 font-normal">
+                Faculty appointments, department coordinator assignments, and teacher-in-charge rosters
+                are approved by the Sri Aurobindo Education Centre (SAEC) Academic Council.
+              </p>
+            </div>
+
+            <Link
+              href="/admin"
+              className="shrink-0 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors"
+            >
+              <Sliders className="w-3.5 h-3.5 text-amber-400" />
+              <span>Admin CMS: Manage Faculty</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4-Column Verified Institutional Metrics Ribbon */}
+      <section className="bg-white border-b border-slate-200/80 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Mentorship Ratio
+                Founding Society
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                1:20 Teacher : Student
+                SAEC (Est. July 1989)
               </strong>
-              <p className="text-xs text-slate-500">Tailored Guidance</p>
+              <p className="text-xs text-slate-500">35+ Years in Bhopal</p>
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Average Experience
+                Academic Framework
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                14+ Years in Teaching
+                MPBSE K–12 Continuum
               </strong>
-              <p className="text-xs text-slate-500">Board Examiners & HODs</p>
+              <p className="text-xs text-slate-500">Nursery to Class XII</p>
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Professional Dev.
+                Evaluation Cycle
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                Continuous Workshops
+                Three-Term Examination
               </strong>
-              <p className="text-xs text-slate-500">Annual MPBSE Pedagogy</p>
+              <p className="text-xs text-slate-500">Sept · Dec · Mar–Apr</p>
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                House Mentors
+                House Mentorship
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                4 Official Houses
+                4 Championship Houses
               </strong>
-              <p className="text-xs text-slate-500">Teresa, Amartya, Tagore, Raman</p>
+              <p className="text-xs text-slate-500">Teresa · Amartya · Tagore · Raman</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Faculty Directory Filter & Cards */}
+      {/* Departmental Directory Filter & Wing Cards */}
       <section className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Controls Bar */}
           <div className="p-4 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            {/* Department Pills */}
+            {/* Wing Pills */}
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 md:pb-0">
-              {departments.map((dept) => (
+              {[
+                { id: "all", label: "All Academic Wings" },
+                { id: "pre-primary", label: "Pre-Primary" },
+                { id: "primary", label: "Primary Wing" },
+                { id: "middle", label: "Middle Wing" },
+                { id: "secondary", label: "Secondary / Senior" },
+                { id: "science-labs", label: "Science Labs" },
+                { id: "library", label: "Central Library" },
+                { id: "sports", label: "Physical Education" },
+              ].map((pill) => (
                 <button
-                  key={dept}
-                  onClick={() => setSelectedDept(dept)}
+                  key={pill.id}
+                  onClick={() => setSelectedWing(pill.id)}
                   className={cn(
                     "px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer",
-                    selectedDept === dept
+                    selectedWing === pill.id
                       ? "bg-slate-900 text-white shadow-xs font-bold"
                       : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
                   )}
                 >
-                  {dept}
+                  {pill.label}
                 </button>
               ))}
             </div>
@@ -264,51 +334,69 @@ export default function FacultyPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search mentor or subject..."
+                placeholder="Search wing or role..."
                 className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-slate-900"
               />
             </div>
           </div>
 
-          {/* Faculty Card Grid */}
+          {/* Departmental Wings Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredFaculty.map((fac, idx) => (
+            {filteredWings.map((wing) => (
               <div
-                key={idx}
-                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md transition-all space-y-4 flex flex-col justify-between"
+                key={wing.id}
+                className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-200">
-                      {fac.department}
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-800 border border-blue-200">
+                      {wing.gradeBracket}
                     </span>
-                    <span className="text-[11px] text-slate-500 font-medium">
-                      {fac.experienceYears} Years Exp.
+                    <span className="text-[11px] font-semibold text-slate-500">
+                      {wing.houseAlignment.split(" ")[0]}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-serif font-bold text-base text-slate-900 leading-tight">
-                      {fac.name}
+                    <h3 className="font-serif font-bold text-lg text-slate-900 leading-tight">
+                      {wing.wingTitle}
                     </h3>
-                    <p className="text-xs text-blue-700 font-semibold mt-0.5">{fac.role}</p>
-                    <p className="text-[11px] text-slate-500 mt-1">{fac.qualifications}</p>
+                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                      {wing.curriculumFocus}
+                    </p>
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
-                    <strong className="text-slate-800">Specialization:</strong> {fac.focusArea}
-                  </p>
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/70 text-xs text-slate-700 space-y-1">
+                    <span className="font-bold text-[11px] uppercase tracking-wider text-slate-400 block">
+                      Pedagogical Approach
+                    </span>
+                    <p className="text-xs leading-normal font-medium">{wing.methodology}</p>
+                  </div>
+
+                  <div className="space-y-1.5 pt-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
+                      Official Department Roles & Faculty
+                    </span>
+                    <ul className="space-y-1 text-xs text-slate-700">
+                      {wing.rolesIncluded.map((role, rIdx) => (
+                        <li key={rIdx} className="flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>{role}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-500">{fac.houseMentorship}</span>
-                  <a
-                    href="mailto:aurobhopal@gmail.com"
+                <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                  <span className="text-slate-400 font-medium">SAEC Department Wing</span>
+                  <Link
+                    href="/contact"
                     className="text-blue-600 hover:underline font-semibold flex items-center gap-1"
                   >
-                    <span>Contact Office</span>
+                    <span>Contact Academic Desk</span>
                     <ArrowRight className="w-3 h-3" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/calendar", priority: 0.85, changeFrequency: "weekly" as const },
     { path: "/gallery", priority: 0.75, changeFrequency: "monthly" as const },
     { path: "/notices", priority: 0.85, changeFrequency: "daily" as const },
+    { path: "/achievements", priority: 0.85, changeFrequency: "monthly" as const },
     { path: "/events", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/news", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/alumni", priority: 0.75, changeFrequency: "monthly" as const },

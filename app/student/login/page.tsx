@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   GraduationCap,
@@ -116,8 +117,18 @@ export default function StudentLoginPage() {
 
       <div className="w-full max-w-xl relative z-10">
         {/* Header Branding */}
-        <div className="text-center mb-8 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold mb-2 shadow-xs">
+        <div className="text-center mb-8 space-y-3">
+          <div className="relative w-48 h-10 mx-auto">
+            <Image
+              src="/images/official/school-logo-blue.png"
+              alt="Sri Aurobindo School, Bhopal"
+              fill
+              sizes="200px"
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold shadow-xs">
             <GraduationCap className="w-3.5 h-3.5 text-blue-600" />
             <span>Sri Aurobindo School · Student & Parent Digital Campus</span>
           </div>

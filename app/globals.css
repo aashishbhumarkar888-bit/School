@@ -27,13 +27,16 @@
   ::-webkit-scrollbar {
     width: 7px;
   }
+
   ::-webkit-scrollbar-track {
     background: #FFFFFF;
   }
+
   ::-webkit-scrollbar-thumb {
     background: #E2E8F0;
     border-radius: 4px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: #CBD5E1;
   }
@@ -49,6 +52,7 @@
   .glass-card-hover {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .glass-card-hover:hover {
     border-color: #CBD5E1;
     transform: translateY(-2px);
@@ -64,7 +68,7 @@
 
   .bg-grid-pattern {
     background-size: 32px 32px;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(203, 213, 225, 0.35) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(203, 213, 225, 0.35) 1px, transparent 1px);
   }
@@ -89,7 +93,10 @@
 
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

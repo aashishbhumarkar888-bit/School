@@ -146,9 +146,9 @@ export const DEMO_STUDENTS: StudentProfile[] = [
       { id: "LIB-3289", title: "Fundamentals of Experimental Physics", author: "Halliday & Resnick", issuedDate: "05-Oct-2026", dueDate: "20-Oct-2026", status: "Active" },
     ],
     fees: [
-      { term: "First Term (June – September)", amount: "₹8,500/-", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-9021", paidDate: "08-July-2026" },
-      { term: "Second Term (October – December)", amount: "₹8,500/-", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-9442", paidDate: "05-October-2026" },
-      { term: "Annual Term (January – March)", amount: "₹8,500/-", dueDate: "10-January-2027", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2027-1002", paidDate: "07-January-2027" },
+      { term: "First Term (June – September)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-9021", paidDate: "08-July-2026" },
+      { term: "Second Term (October – December)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-9442", paidDate: "05-October-2026" },
+      { term: "Annual Term (January – March)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-January-2027", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2027-1002", paidDate: "07-January-2027" },
     ],
   },
   {
@@ -201,8 +201,8 @@ export const DEMO_STUDENTS: StudentProfile[] = [
       { id: "LIB-1029", title: "Gitanjali & Selected Stories", author: "Rabindranath Tagore", issuedDate: "12-Oct-2026", dueDate: "27-Oct-2026", status: "Active" },
     ],
     fees: [
-      { term: "First Term (June – September)", amount: "₹7,200/-", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-7811", paidDate: "05-July-2026" },
-      { term: "Second Term (October – December)", amount: "₹7,200/-", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-8344", paidDate: "08-October-2026" },
+      { term: "First Term (June – September)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-7811", paidDate: "05-July-2026" },
+      { term: "Second Term (October – December)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-8344", paidDate: "08-October-2026" },
     ],
   },
   {
@@ -255,8 +255,8 @@ export const DEMO_STUDENTS: StudentProfile[] = [
       { id: "LIB-9011", title: "Development as Freedom", author: "Amartya Sen", issuedDate: "08-Oct-2026", dueDate: "23-Oct-2026", status: "Active" },
     ],
     fees: [
-      { term: "First Term (June – September)", amount: "₹9,800/-", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-6612", paidDate: "02-July-2026" },
-      { term: "Second Term (October – December)", amount: "₹9,800/-", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-7120", paidDate: "04-October-2026" },
+      { term: "First Term (June – September)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-6612", paidDate: "02-July-2026" },
+      { term: "Second Term (October – December)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-7120", paidDate: "04-October-2026" },
     ],
   },
   {
@@ -309,8 +309,8 @@ export const DEMO_STUDENTS: StudentProfile[] = [
       { id: "LIB-5521", title: "The Post Office & Short Stories", author: "Rabindranath Tagore", issuedDate: "11-Oct-2026", dueDate: "26-Oct-2026", status: "Active" },
     ],
     fees: [
-      { term: "First Term (June – September)", amount: "₹6,800/-", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-5519", paidDate: "06-July-2026" },
-      { term: "Second Term (October – December)", amount: "₹6,800/-", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-5991", paidDate: "07-October-2026" },
+      { term: "First Term (June – September)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-July-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-5519", paidDate: "06-July-2026" },
+      { term: "Second Term (October – December)", amount: "Cleared (As per SAEC Attached Schedule)", dueDate: "10-October-2026", status: "Paid · Exam Hall Ticket Unlocked", receiptNumber: "SAS-REC-2026-5991", paidDate: "07-October-2026" },
     ],
   },
 ];

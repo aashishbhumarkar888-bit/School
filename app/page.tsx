@@ -65,20 +65,30 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left 7 Columns: Editorial Headline & Copy */}
             <div className="lg:col-span-7 text-left space-y-6">
-              {/* Institutional Heritage Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs text-slate-700"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold text-slate-900">Est. July 1989</span>
-                <span className="text-slate-300">•</span>
-                <span>Sri Aurobindo Education Centre (SAEC)</span>
-                <span className="text-slate-300">•</span>
-                <span className="text-blue-700 font-semibold">MPBSE K–12</span>
-              </motion.div>
+              {/* Official Institutional Emblem & Heritage Badge */}
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="relative h-10 w-36 sm:h-11 sm:w-44 shrink-0">
+                  <Image
+                    src="/images/official/school-logo-blue.png"
+                    alt="Sri Aurobindo School, Bhopal Official Insignia"
+                    fill
+                    sizes="(max-width: 640px) 150px, 180px"
+                    className="object-contain object-left"
+                    priority
+                  />
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: -16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs text-xs text-slate-700"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-bold text-slate-900">Est. July 1989</span>
+                  <span className="text-slate-300">•</span>
+                  <span className="text-blue-700 font-semibold">MPBSE K–12</span>
+                </motion.div>
+              </div>
 
               {/* Kinetic Luminous Headline */}
               <motion.h1

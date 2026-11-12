@@ -178,12 +178,12 @@ export default function AlumniPage() {
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Alumni Count
+                Alumni Legacy
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                6,500+ Scholars
+                35+ Years of Batches
               </strong>
-              <p className="text-xs text-slate-500">Across India & Abroad</p>
+              <p className="text-xs text-slate-500">Graduating Since 1989</p>
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">

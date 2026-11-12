@@ -108,12 +108,12 @@ export default function LeadershipPage() {
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                Student Mentorship
+                Academic Evaluation
               </span>
               <strong className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                1:20 Mentor Ratio
+                3 Exam Terms
               </strong>
-              <p className="text-xs text-slate-500">Individualised Care</p>
+              <p className="text-xs text-slate-500">Sept · Dec · Mar–Apr</p>
             </div>
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">

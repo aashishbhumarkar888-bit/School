@@ -31,6 +31,8 @@ export function sanitizeInput(input: string | undefined | null): string {
     .trim();
 }
 
+export const sanitizeText = sanitizeInput;
+
 export function hashSecret(secret: string): string {
   return crypto.createHmac("sha256", HMAC_SECRET).update(secret.trim()).digest("hex");
 }

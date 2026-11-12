@@ -187,19 +187,23 @@ export function SiteFooter() {
           {/* Cols 1–4: Institutional Identity & Live Office Status */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200 p-1 shrink-0 shadow-xs">
+              <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-slate-50 border border-blue-600/25 p-1 shrink-0 shadow-xs flex items-center justify-center">
                 <Image
-                  src="/images/official/logo.png"
-                  alt="Sri Aurobindo School Crest"
-                  width={38}
-                  height={38}
-                  className="object-contain"
+                  src="/images/official/seal-crest.png"
+                  alt="Sri Aurobindo School Emblem"
+                  width={40}
+                  height={40}
+                  className="object-contain w-full h-full"
                 />
               </div>
               <div>
-                <h3 className="font-serif font-bold text-sm text-slate-900 leading-tight">
-                  {SCHOOL_FACTS.fullName}
-                </h3>
+                <Image
+                  src="/images/official/school-wordmark-blue.png"
+                  alt="Sri Aurobindo School"
+                  width={180}
+                  height={30}
+                  className="h-6 w-auto object-contain object-left mb-0.5"
+                />
                 <p className="text-xs text-slate-500 font-medium">
                   {SCHOOL_FACTS.shortAddress} · Est. July 1989
                 </p>

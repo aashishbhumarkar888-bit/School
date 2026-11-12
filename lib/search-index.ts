@@ -45,6 +45,20 @@ export const INSTANT_ANSWERS: InstantAnswerCard[] = [
     actionHref: "/admissions",
   },
   {
+    triggerKeywords: ["fee", "fees", "tuition", "cost", "charges", "payment", "bus fee", "transport fee", "admission fee"],
+    type: "admission",
+    title: "School Fees & Fee Schedule Regulations",
+    headline: "Registration Proforma: ₹100/- (Confirmed Official)",
+    details: [
+      "Registration Proforma Fee: Strictly ₹100/- (Payable at counter)",
+      "Tuition & Admission Fees: As per Official SAEC Schedule",
+      "Terminal Exam Clearance: Dues settled prior to admit card release",
+      "Accounts Counter Active: 8:00 AM – 1:00 PM (Monday – Saturday)",
+    ],
+    actionLabel: "View Approved Fee Regulations",
+    actionHref: "/admissions#fee-structure",
+  },
+  {
     triggerKeywords: ["exam", "term", "result", "promotion", "marks", "grade", "percentage", "supplementary", "pass"],
     type: "exam",
     title: "Three-Term Examination Architecture",
@@ -149,6 +163,14 @@ export const MASTER_SEARCH_INDEX: SearchEntry[] = [
     category: "Pages & Portals",
     description: "Teresa, Amartya, Tagore, and Raman house standings, house captains, and spirit quiz.",
     keywords: ["houses", "teresa", "amartya", "tagore", "raman", "championship", "quiz"],
+  },
+  {
+    id: "achievements",
+    title: "Verified Institutional Milestones & Honours",
+    href: "/achievements",
+    category: "Pages & Portals",
+    description: "SAEC 1989 charter, MPBSE affiliation, Three-Term academic merit, and Science exhibitions.",
+    keywords: ["achievements", "milestones", "honours", "awards", "trophy", "legacy", "history", "charter"],
   },
   {
     id: "school-life",
