@@ -140,7 +140,13 @@ export interface SchoolDatabase {
   events: EventRecord[];
 }
 
-const DB_PATH = path.join(process.cwd(), "data", "school-db.json");
+const isServerless = process.env.VERCEL === "1" || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+const DB_PATH = isServerless
+  ? path.join("/tmp", "school-db.json")
+  : path.join(process.cwd(), "data", "school-db.json");
+
+// In-memory cache for ultra-fast serverless execution
+let memoryDb: SchoolDatabase | null = null;
 
 function getInitialDatabase(): SchoolDatabase {
   return {
@@ -526,15 +532,28 @@ function getInitialDatabase(): SchoolDatabase {
 
 // Atomically read database with auto-initialization and backward-compatibility backfill
 export function getDb(): SchoolDatabase {
+  if (memoryDb) {
+    return memoryDb;
+  }
+
   try {
     const dir = path.dirname(DB_PATH);
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+      try {
+        fs.mkdirSync(dir, { recursive: true });
+      } catch (e) {
+        console.warn("Could not create dir, using in-memory:", e);
+      }
     }
 
     const initial = getInitialDatabase();
     if (!fs.existsSync(DB_PATH)) {
-      fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2), "utf8");
+      try {
+        fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2), "utf8");
+      } catch (e) {
+        console.warn("Could not write initial DB file, using memory:", e);
+      }
+      memoryDb = initial;
       return initial;
     }
 
@@ -556,15 +575,18 @@ export function getDb(): SchoolDatabase {
       events: parsed.events || initial.events,
     };
 
+    memoryDb = consolidated;
     return consolidated;
   } catch (err) {
     console.error("Error reading database, falling back to initial seed:", err);
-    return getInitialDatabase();
+    memoryDb = getInitialDatabase();
+    return memoryDb;
   }
 }
 
 // Atomically write database to prevent corruption
 export function saveDb(data: SchoolDatabase): void {
+  memoryDb = data;
   try {
     const dir = path.dirname(DB_PATH);
     if (!fs.existsSync(dir)) {
@@ -575,7 +597,6 @@ export function saveDb(data: SchoolDatabase): void {
     fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), "utf8");
     fs.renameSync(tempPath, DB_PATH);
   } catch (err) {
-    console.error("Error writing database:", err);
-    throw new Error("Database persistence error");
+    console.warn("Persistence to disk skipped (serverless read-only filesystem), maintained in memory:", err);
   }
 }
